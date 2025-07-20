@@ -1,0 +1,81 @@
+.login-container {
+  display: flex;
+  height: 100vh;
+  background-color: #000;
+  background-image: url('https://i.imgur.com/76bAag1.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.login-form-container {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+
+.logo {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 20px;
+}
+
+.login-form-container h2 {
+  margin-bottom: 20px;
+}
+
+.login-form {
+  width: 400px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #333;
+  background: #222;
+  color: #fff;
+  border-radius: 5px;
+}
+
+.login-btn {
+  width: 100%;
+  padding: 10px;
+  background: linear-gradient(to right, #8e2de2, #4a00e0);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.forgot-password {
+  margin-top: 10px;
+  text-align: right;
+}
+
+.forgot-password a {
+  color: #aaa;
+  text-decoration: none;
+}
+
+.error-message {
+  color: red;
+  margin-top: 1rem;
+}
+
+p {
+  margin-top: 1rem;
+}
