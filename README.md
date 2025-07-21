@@ -14,7 +14,7 @@ A web application for saving bookmarks with automatic summary generation using J
 
 - **Frontend**: React
 - **Backend**: Node.js / Express
-- **Database**: SQLite
+- **Database**: Supabase
 - **Authentication**: JWT tokens
 
 ## Setup Instructions
