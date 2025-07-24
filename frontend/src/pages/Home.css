@@ -113,7 +113,9 @@
   justify-content: center;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
-  overflow: hidden;
+  overflow: visible;
+  box-shadow: 0 0 10px rgba(142, 45, 226, 0.2);
+  z-index: 10;
 }
 
 .theme-toggle-btn::before {
@@ -132,6 +134,7 @@
 .theme-toggle-btn:hover {
   transform: translateY(-2px) scale(1.05);
   border-color: var(--accent-color);
+  box-shadow: 0 0 20px rgba(142, 45, 226, 0.4);
 }
 
 .theme-toggle-btn:hover::before {
@@ -144,8 +147,37 @@
 
 .theme-toggle-btn svg {
   position: relative;
-  z-index: 1;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  z-index: 20;
+  width: 22px;
+  height: 22px;
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+}
+
+.theme-toggle-btn svg path {
+  fill: #FF8F00 !important;
+}
+
+.theme-toggle-btn svg circle {
+  fill: #FFC107 !important;
+}
+
+.theme-toggle-btn svg line {
+  stroke: #FF8F00 !important;
+  stroke-width: 2 !important;
+}
+
+.theme-toggle-btn svg g {
+  stroke: #FF8F00 !important;
+  stroke-width: 2 !important;
+}
+
+.theme-toggle-btn svg path,
+.theme-toggle-btn svg circle,
+.theme-toggle-btn svg line,
+.theme-toggle-btn svg g {
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.5));
 }
 
 .logout-btn {
@@ -159,6 +191,7 @@
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
+  box-shadow: 0 0 10px rgba(142, 45, 226, 0.2);
 }
 
 .logout-btn::before {
@@ -183,6 +216,7 @@
   transform: translateY(-2px) scale(1.05);
   border-color: var(--accent-color);
   color: var(--accent-color);
+  box-shadow: 0 0 20px rgba(142, 45, 226, 0.4);
 }
 
 .logout-btn:hover::before {
@@ -209,12 +243,12 @@
   border-radius: 16px;
   border: 1px solid var(--border-color);
   transition: all 0.3s ease;
-  box-shadow: var(--card-shadow);
+  box-shadow: var(--card-shadow), 0 0 10px rgba(142, 45, 226, 0.1);
 }
 
 .add-bookmark-form:focus-within {
   border-color: var(--accent-color);
-  box-shadow: var(--shadow-hover);
+  box-shadow: var(--shadow-hover), 0 0 20px rgba(142, 45, 226, 0.3);
   transform: translateY(-2px);
 }
 
@@ -234,24 +268,48 @@
 
 .add-btn {
   padding: 0.8rem 1.5rem;
-  background: var(--accent-color);
+  background: linear-gradient(135deg, #8e2de2, #4a00e0);
   color: white;
   border: none;
   border-radius: 12px;
   cursor: pointer;
-  font-weight: 500;
-  transition: all 0.2s ease;
+  font-weight: 600;
+  transition: all 0.3s ease;
   white-space: nowrap;
+  box-shadow: 0 4px 15px rgba(142, 45, 226, 0.4);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.add-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #a855f7, #7c3aed);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
 }
 
 .add-btn:hover:not(:disabled) {
-  background: var(--accent-hover);
-  transform: translateY(-2px);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(142, 45, 226, 0.6);
+}
+
+.add-btn:hover:not(:disabled)::before {
+  opacity: 1;
+}
+
+.add-btn:active:not(:disabled) {
+  transform: translateY(0) scale(0.98);
 }
 
 .add-btn:disabled {
   opacity: 0.7;
   cursor: not-allowed;
+  transform: none;
+  box-shadow: 0 2px 8px rgba(142, 45, 226, 0.2);
 }
 
 .tag-filter-input {
@@ -356,6 +414,40 @@ body[data-theme="dark"] .home-container {
   color: rgba(255, 255, 255, 0.4);
 }
 
+[data-theme="dark"] .theme-toggle-btn,
+[data-theme="dark"] .logout-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #f0f0f5;
+  box-shadow: 0 0 10px rgba(142, 45, 226, 0.3);
+}
+
+[data-theme="dark"] .theme-toggle-btn svg {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+[data-theme="dark"] .theme-toggle-btn svg path {
+  fill: #FFEB3B !important;
+}
+
+[data-theme="dark"] .theme-toggle-btn svg circle {
+  fill: #FFF176 !important;
+}
+
+[data-theme="dark"] .theme-toggle-btn svg line,
+[data-theme="dark"] .theme-toggle-btn svg g {
+  stroke: #FFEB3B !important;
+  stroke-width: 2.5 !important;
+}
+
+[data-theme="dark"] .theme-toggle-btn:hover,
+[data-theme="dark"] .logout-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #8e2de2;
+  box-shadow: 0 0 20px rgba(142, 45, 226, 0.5);
+}
+
 /* Light mode optimization */
 body[data-theme="light"] {
   --theme-bg: #ffffff;
@@ -396,13 +488,19 @@ body[data-theme="light"] {
   .show-more-btn {
     background: #ffffff;
     border: 1px solid rgba(0, 0, 0, 0.08);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-    color: #1a202c;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-  }
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+  color: #1a202c;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
 
-  .theme-toggle-btn:hover,
+body[data-theme="light"] .theme-toggle-btn svg path {
+  fill: #FDB813 !important;
+}
+
+body[data-theme="light"] .theme-toggle-btn svg {
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3)) brightness(1.1);
+}  .theme-toggle-btn:hover,
   .logout-btn:hover,
   .show-more-btn:hover {
     background: var(--accent-color);
@@ -443,5 +541,204 @@ body[data-theme="light"] {
 
   .loading {
     color: #1a202c;
+  }
+}
+
+/* Mobile Responsive Design */
+@media (max-width: 768px) {
+  .home-header {
+    padding: 0.75rem 0;
+    flex-direction: row;
+    gap: 0.5rem;
+    position: sticky;
+    top: 0;
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+  }
+  
+  .home-header > * {
+    padding: 0 1rem;
+  }
+  
+  .home-header h1 {
+    font-size: 1.4rem;
+    text-align: left;
+    flex: 1;
+  }
+  
+  .user-section {
+    justify-content: flex-end;
+    gap: 0.5rem;
+    flex-shrink: 0;
+  }
+  
+  .user-section span {
+    display: none;
+  }
+  
+  .add-bookmark-section {
+    padding: 5rem 1rem 2rem 1rem;
+  }
+  
+  .add-bookmark-form {
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1rem;
+  }
+  
+  .url-input {
+    font-size: 1rem;
+    padding: 0.875rem;
+  }
+  
+  .add-btn,
+  .show-more-btn {
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+    width: 100%;
+  }
+  
+  .bookmarks-grid {
+    padding: 2rem 1rem;
+    margin-top: 1rem;
+  }
+  
+  .bookmarks {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .theme-toggle-btn,
+  .logout-btn {
+    padding: 0.5rem;
+    font-size: 0.85rem;
+    border-radius: 10px;
+    min-width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Hide SVG and show text content on mobile */
+  .theme-toggle-btn svg {
+    display: none !important;
+  }
+  
+  .theme-toggle-btn::after {
+    content: "☀️";
+    font-size: 18px;
+    display: block !important;
+    opacity: 1 !important;
+  }
+  
+  [data-theme="dark"] .theme-toggle-btn::after {
+    content: "🌙";
+    font-size: 18px;
+  }
+  
+  .logout-btn {
+    padding: 0.5rem 0.75rem;
+    min-width: auto;
+  }
+  
+  .logout-btn span {
+    display: none;
+  }
+  
+  .logout-btn::after {
+    content: "↗";
+    font-size: 1.1rem;
+    font-weight: bold;
+    transform: rotate(45deg);
+  }
+}
+
+@media (max-width: 480px) {
+  .home-header {
+    padding: 0.5rem 0;
+  }
+  
+  .home-header h1 {
+    font-size: 1.2rem;
+  }
+  
+  .user-section {
+    gap: 0.4rem;
+  }
+  
+  .theme-toggle-btn,
+  .logout-btn {
+    padding: 0.4rem;
+    font-size: 0.8rem;
+    border-radius: 8px;
+    min-width: 36px;
+    height: 36px;
+  }
+  
+  /* Hide SVG and show emoji on smaller mobile */
+  .theme-toggle-btn svg {
+    display: none !important;
+  }
+  
+  .theme-toggle-btn::after {
+    content: "☀️";
+    font-size: 16px;
+    display: block !important;
+    opacity: 1 !important;
+  }
+  
+  [data-theme="dark"] .theme-toggle-btn::after {
+    content: "🌙";
+    font-size: 16px;
+  }
+  
+  .logout-btn {
+    padding: 0.4rem 0.6rem;
+    min-width: auto;
+  }
+  
+  .add-bookmark-section {
+    padding: 4.5rem 0.75rem 1.5rem 0.75rem;
+  }
+  
+  .url-input {
+    font-size: 0.95rem;
+    padding: 0.75rem;
+  }
+  
+  .add-btn,
+  .show-more-btn {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.95rem;
+  }
+  
+  .bookmarks-grid {
+    padding: 1.5rem 0.75rem;
+  }
+  
+  .url-input-container .add-btn {
+    border-radius: 12px;
+  }
+}
+
+@media (max-width: 320px) {
+  .home-header h1 {
+    font-size: 1.1rem;
+  }
+  
+  .user-section {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .theme-toggle-btn,
+  .logout-btn {
+    width: 100%;
+    max-width: 200px;
+  }
+  
+  .add-bookmark-section {
+    padding: 4.5rem 0.5rem 1rem 0.5rem;
   }
 }
